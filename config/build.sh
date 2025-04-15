@@ -1,16 +1,9 @@
 #!/bin/bash
+set -e
 
-echo "🔧 Running Django build steps..."
+echo "📦 Installing Python dependencies..."
+pip install -r requirements.txt
 
-# Exit if any command fails
-set -o errexit
-
-# Apply database migrations
-echo "📦 Applying migrations..."
-python manage.py migrate 
-
-# Collect static files
-echo "🎒 Collecting static files..."
+echo "🧱 Running Django build steps..."
+python manage.py migrate
 python manage.py collectstatic --noinput
-
-echo "✅ Build complete!"
